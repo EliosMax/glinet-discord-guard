@@ -44,10 +44,14 @@
 
         if [ "$CURRENT_STATE" != "$LAST_STATE" ]; then
             if [ "$LAST_STATE" != "unknown" ]; then
+                
+                # Pobranie aktualnego czasu w formacie RRRR-MM-DD GG:MM:SS
+                TIMESTAMP=$(date +"%Y-%m-%d %H:%M:%S")
+
                 if [ "$CURRENT_STATE" = "disconnected" ]; then
-                    send_msg "$MSG_DISCONNECTED"
+                    send_msg "[$TIMESTAMP] $MSG_DISCONNECTED"
                 elif [ "$CURRENT_STATE" = "connected" ]; then
-                    send_msg "$MSG_CONNECTED"
+                    send_msg "[$TIMESTAMP] $MSG_CONNECTED"
                 fi
             fi
             LAST_STATE="$CURRENT_STATE"
